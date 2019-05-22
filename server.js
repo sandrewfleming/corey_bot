@@ -13,7 +13,7 @@ const client = new Discord.Client();
 // i usually put a newline around each logical "chunk"... this makes it
 // easier to identify code that maybe deserves it's own function
 
-// if isCorey(); resetBitchCount();
+// if isCorey(); resetgrumbleCount();
 // message-count++ (cant find underscore on this KB)
 // handleMessage(msg); // this does the msg count check, and just check for > 25, since you increment no matter what above
 
@@ -31,7 +31,7 @@ let response = [
 
 
 let message_count = 0;
-let bitch_count = 0;
+let grumble_count = 0;
 
 
 //define function to look for corey
@@ -44,22 +44,22 @@ function isCorey(msg) {
 client.on('message', async msg => {
   //exclude messages from coreybot
   if(msg.author.bot) return;
- //when a msg from corey is received, reset bitch_count, message count and send message 
-  if (isCorey(msg) && bitch_count > 0) {
+ //when a msg from corey is received, reset grumble_count, message count and send message 
+  if (isCorey(msg) && grumble_count > 0) {
       msg.channel.send("My work here is done. Corey, you missed " + message_count + "message!");
-      bitch_count = 0;
+      grumble_count = 0;
       message_count = 0;
   }   
   
 //increment message_count  
   message_count++;
   
-//bitch and send how many times bot has bitched
+//grumble and send how many times bot has grumbleed
   if(message_count++ % 50 === 0) {
     message_count = 0;
     msg.channel.send(response[Math.floor(Math.random() * response.length)]);
-    bitch_count += 1;
-    msg.channel.send("***I have now bitched " + bitch_count + " times!***");
+    grumble_count += 1;
+    msg.channel.send("***I have now grumbleed " + grumble_count + " times!***");
   }
   
 })
@@ -67,6 +67,6 @@ client.on('message', async msg => {
 client.login(process.env.BOT_TOKEN)
 
 
-//add command for bitch_count
+//add command for grumble_count
 
 //add a save for later tag function
